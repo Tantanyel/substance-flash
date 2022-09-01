@@ -1,0 +1,336 @@
+<?xml version="1.0" encoding="utf-8" standalone="no" ?>
+<!-- 
+	Usage:
+
+	To localize the description, use the following format for the description element.
+	<description>
+	<text xml:lang="en">English App description goes here</text>
+	<text xml:lang="fr">French App description goes here</text>
+	<text xml:lang="ja">Japanese App description goes here</text>
+	</description>
+
+	To localize the name, use the following format for the name element.
+	<name>
+	<text xml:lang="en">English App name goes here</text>
+	<text xml:lang="fr">French App name goes here</text>
+	<text xml:lang="ja">Japanese App name goes here</text>
+	</name>
+-->
+<application xmlns="http://ns.adobe.com/air/application/32.0" xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools">
+	<id>ru.polimerstudios.substance</id>
+	<versionNumber>1.2.18</versionNumber>
+	<versionLabel>1.2.18</versionLabel>
+	<filename>Substance</filename>
+	<description/>
+	<name>Substance</name>
+	<copyright/>
+	<initialWindow>
+		  <content>liz-l.swf</content>
+		  <systemChrome>standard</systemChrome>
+		  <transparent>false</transparent>
+		  <visible>true</visible>
+		  <fullScreen>true</fullScreen>
+		  <aspectRatio>portrait</aspectRatio>
+		  <renderMode>gpu</renderMode>
+		  <autoOrients>false</autoOrients>
+          <width>330</width>
+          <height>520</height>
+    </initialWindow>
+		<icon>
+		  <image36x36>ico/ico_36.png</image36x36>
+    <image48x48>ico/ico_48.png</image48x48>
+    <image72x72>ico/ico_72.png</image72x72>
+    <image96x96>ico/ico_96.png</image96x96>
+    <image144x144>ico/ico_144.png</image144x144>
+    <image192x192>ico/ico_192.png</image192x192>
+  </icon>
+		<customUpdateUI>false</customUpdateUI>
+		<allowBrowserInvocation>false</allowBrowserInvocation>
+  <supportedLanguages>en ru</supportedLanguages>
+
+  <android>
+    <manifestAdditions><![CDATA[<manifest android:installLocation="auto">
+
+   <uses-sdk android:minSdkVersion="21" android:targetSdkVersion="28" />
+
+	<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+	<uses-permission android:name="android.permission.INTERNET" />
+	<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+	<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+	<uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/> 
+	<uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+	<uses-permission android:name="android.permission.GET_ACCOUNTS" />
+	<uses-permission android:name="android.permission.WAKE_LOCK" />
+
+	<uses-permission android:name="com.android.vending.BILLING" />
+	<uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
+	<permission android:name="air.ru.polimerstudios.substance.permission.C2D_MESSAGE" android:protectionLevel="signature" />
+	<uses-permission android:name="air.ru.polimerstudios.substance.permission.C2D_MESSAGE" />
+	
+	<uses-feature android:required="true" android:name="android.hardware.touchscreen.multitouch" />
+ 
+	<application android:allowBackup="true">
+
+		<meta-data android:name="firebase_crashlytics_collection_enabled" android:value="true" />
+		<provider
+			android:name="com.crashlytics.android.CrashlyticsInitProvider"
+			android:authorities="air.ru.polimerstudios.substance.crashlyticsinitprovider"
+			android:exported="false"
+			android:initOrder="90" />
+
+			<activity android:name="com.distriqt.extension.firebase.crashlytics.activities.CrashActivity" />
+
+		<meta-data
+			android:name="com.google.android.gms.version"
+			android:value="@integer/google_play_services_version" />
+			
+		<activity android:name="com.google.android.gms.common.api.GoogleApiActivity" 
+			android:theme="@android:style/Theme.Translucent.NoTitleBar" 
+			android:exported="false"/>
+s
+			<meta-data android:name="com.facebook.sdk.ApplicationId" 
+				android:value="805438416601258"/>
+
+			<activity android:name="com.facebook.FacebookActivity" 
+				android:theme="@android:style/Theme.Translucent.NoTitleBar" android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation" android:label="Substance" />
+
+			<activity android:name="com.freshplanet.ane.AirFacebook.LoginActivity" 
+				android:theme="@android:style/Theme.Translucent.NoTitleBar" android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation" />
+			
+			
+		<!-- FIREBASE CORE -->
+		<!-- common -->
+		<service android:name="com.google.firebase.components.ComponentDiscoveryService" >
+			<meta-data
+				android:name="com.google.firebase.components:com.google.firebase.analytics.connector.internal.AnalyticsConnectorRegistrar"
+				android:value="com.google.firebase.components.ComponentRegistrar" />
+			<meta-data
+				android:name="com.google.firebase.components:com.google.firebase.iid.Registrar"
+				android:value="com.google.firebase.components.ComponentRegistrar" />
+		</service>
+		<provider
+			android:authorities="air.ru.polimerstudios.substance.firebaseinitprovider"
+			android:name="com.google.firebase.provider.FirebaseInitProvider"
+			android:exported="false"
+			android:initOrder="100" />
+
+
+		<!-- analytics -->
+		<receiver
+			android:name="com.google.android.gms.measurement.AppMeasurementReceiver"
+			android:enabled="true"
+			android:exported="false" >
+		</receiver>
+		<receiver
+			android:name="com.google.android.gms.measurement.AppMeasurementInstallReferrerReceiver"
+			android:enabled="true"
+			android:exported="true"
+			android:permission="android.permission.INSTALL_PACKAGES" >
+			<intent-filter>
+				<action android:name="com.android.vending.INSTALL_REFERRER" />
+			</intent-filter>
+		</receiver>
+
+		<service
+			android:name="com.google.android.gms.measurement.AppMeasurementService"
+			android:enabled="true"
+			android:exported="false" />
+		<service
+			android:name="com.google.android.gms.measurement.AppMeasurementJobService"
+			android:enabled="true"
+			android:exported="false"
+			android:permission="android.permission.BIND_JOB_SERVICE" />
+
+
+		<!-- iid -->
+		<receiver
+			android:name="com.google.firebase.iid.FirebaseInstanceIdReceiver"
+			android:exported="true"
+			android:permission="com.google.android.c2dm.permission.SEND" >
+			<intent-filter>
+				<action android:name="com.google.android.c2dm.intent.RECEIVE" />
+
+				<category android:name="air.ru.polimerstudios.substance" />
+			</intent-filter>
+		</receiver>
+		<service
+			android:name="com.google.firebase.iid.FirebaseInstanceIdService"
+			android:exported="true" >
+			<intent-filter android:priority="-500" >
+				<action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
+			</intent-filter>
+		</service>
+
+		<activity>
+			<intent-filter>
+				<action android:name="android.intent.action.MAIN" />
+				<category android:name="android.intent.category.LAUNCHER" />
+			</intent-filter>
+			<intent-filter>
+				<action android:name="android.intent.action.VIEW" />
+				<category android:name="android.intent.category.BROWSABLE" />
+				<category android:name="android.intent.category.DEFAULT" />
+			</intent-filter>
+		</activity>
+
+		<meta-data android:name="android.max_aspect" android:value="2.1" />
+
+		<meta-data android:name="com.google.android.gms.games.APP_ID" android:value="\ 609578352907" />
+
+		<activity 
+			android:name="com.distriqt.extension.inappbilling.activities.ProductViewActivity" 
+			android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+
+
+		<activity
+			android:name="com.android.billingclient.api.ProxyBillingActivity"
+			android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
+			android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+
+
+        <activity
+                        android:name="com.ironsource.sdk.controller.ControllerActivity"
+                        android:configChanges="orientation|screenSize"
+                        android:hardwareAccelerated="true" />
+                    <activity
+                        android:name="com.ironsource.sdk.controller.InterstitialActivity"
+                        android:configChanges="orientation|screenSize"
+                        android:hardwareAccelerated="true"
+                        android:theme="@android:style/Theme.Translucent" />
+                    <activity
+                        android:name="com.ironsource.sdk.controller.OpenUrlActivity"
+                        android:configChanges="orientation|screenSize"
+                        android:hardwareAccelerated="true"
+                        android:theme="@android:style/Theme.Translucent" />
+
+                    <!-- AdColony -->
+                    <activity
+                        android:name="com.adcolony.sdk.AdColonyInterstitialActivity"
+                        android:configChanges="keyboardHidden|orientation|screenSize"
+                        android:hardwareAccelerated="true" />
+                    <activity
+                        android:name="com.adcolony.sdk.AdColonyAdViewActivity"
+                        android:configChanges="keyboardHidden|orientation|screenSize"
+                        android:hardwareAccelerated="true" />
+
+                    <!-- AdMob -->
+                    <meta-data
+                        android:name="com.google.android.gms.version"
+                        android:value="12451000" />
+
+                    <activity
+                        android:name="com.google.android.gms.ads.AdActivity"
+                        android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize"
+                        android:theme="@android:style/Theme.Translucent" />
+
+                    <!-- AppLovin -->
+                    <activity android:name="com.applovin.adview.AppLovinInterstitialActivity" android:configChanges="orientation|screenSize"/>
+                    <activity android:name="com.applovin.adview.AppLovinConfirmationActivity" android:configChanges="orientation|screenSize"/>
+
+                    <meta-data
+                        android:name="applovin.sdk.verbose_logging"
+                        android:value="true" />
+
+                    <!-- Chartboost -->
+                    <activity
+                        android:name="com.chartboost.sdk.CBImpressionActivity"
+                        android:configChanges="keyboardHidden|orientation|screenSize"
+                        android:excludeFromRecents="true"
+                        android:hardwareAccelerated="true"
+                        android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen" />
+
+                    <!-- Tapjoy -->
+                    <activity
+                        android:name="com.tapjoy.TJAdUnitActivity"
+                        android:configChanges="orientation|keyboardHidden|screenSize"
+                        android:hardwareAccelerated="true"
+                        android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen" />
+                    <activity
+                        android:name="com.tapjoy.mraid.view.ActionHandler"
+                        android:configChanges="orientation|keyboardHidden|screenSize" />
+                    <activity
+                        android:name="com.tapjoy.mraid.view.Browser"
+                        android:configChanges="orientation|keyboardHidden|screenSize" />
+                    <activity
+                        android:name="com.tapjoy.TJContentActivity"
+                        android:configChanges="orientation|keyboardHidden|screenSize"
+                        android:hardwareAccelerated="true"
+                        android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+                    <activity android:name=".activities.SegmentActivity" />
+
+                    <!-- UnityAds -->
+                    <activity
+                        android:name="com.unity3d.services.ads.adunit.AdUnitActivity"
+                        android:configChanges="fontScale|keyboard|keyboardHidden|locale|mnc|mcc|navigation|orientation|screenLayout|screenSize|smallestScreenSize|uiMode|touchscreen"
+                        android:hardwareAccelerated="true"
+                        android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
+                    <activity
+                        android:name="com.unity3d.services.ads.adunit.AdUnitTransparentActivity"
+                        android:configChanges="fontScale|keyboard|keyboardHidden|locale|mnc|mcc|navigation|orientation|screenLayout|screenSize|smallestScreenSize|uiMode|touchscreen"
+                        android:hardwareAccelerated="true"
+                        android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen" />
+                    <activity
+                        android:name="com.unity3d.services.ads.adunit.AdUnitTransparentSoftwareActivity"
+                        android:configChanges="fontScale|keyboard|keyboardHidden|locale|mnc|mcc|navigation|orientation|screenLayout|screenSize|smallestScreenSize|uiMode|touchscreen"
+                        android:hardwareAccelerated="false"
+                        android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen" />
+                    <activity
+                        android:name="com.unity3d.services.ads.adunit.AdUnitSoftwareActivity"
+                        android:configChanges="fontScale|keyboard|keyboardHidden|locale|mnc|mcc|navigation|orientation|screenLayout|screenSize|smallestScreenSize|uiMode|touchscreen"
+                        android:hardwareAccelerated="false"
+                        android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
+
+                    <!-- Vungle -->
+                    <activity
+                        android:name="com.vungle.publisher.VideoFullScreenAdActivity"
+                        android:configChanges="keyboardHidden|orientation|screenSize|screenLayout|smallestScreenSize"
+                        android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
+                    <activity
+                        android:name="com.vungle.publisher.MraidFullScreenAdActivity"
+                        android:configChanges="keyboardHidden|orientation|screenSize|screenLayout|smallestScreenSize"
+                        android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen" />
+                    <activity
+                        android:name="com.vungle.publisher.FlexViewAdActivity"
+                        android:configChanges="keyboardHidden|orientation|screenSize|screenLayout|smallestScreenSize"
+                        android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen" />
+
+	</application>
+</manifest>]]></manifestAdditions>
+  </android>
+  
+  <iPhone>
+    <InfoAdditions><![CDATA[
+  <key>UIDeviceFamily</key>
+  <array>
+    <string>1</string>
+    <string>2</string>
+  </array>
+]]></InfoAdditions>
+    <requestedDisplayResolution>standard</requestedDisplayResolution>
+  </iPhone>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <extensions>
+    <extensionID>com.freshplanet.ane.AirFacebook</extensionID>
+    <extensionID>com.distriqt.androidsupport.V4</extensionID>
+    <extensionID>com.distriqt.playservices.Base</extensionID>
+    <extensionID>com.distriqt.Core</extensionID>
+    <extensionID>com.distriqt.CustomResources</extensionID>
+    <extensionID>com.distriqt.InAppBilling</extensionID>
+    <extensionID>com.distriqt.Firebase</extensionID>
+    <extensionID>com.distriqt.firebase.Crashlytics</extensionID>
+    <extensionID>com.distriqt.firebase.RemoteConfig</extensionID>
+    <extensionID>com.ironsource.adobeair</extensionID>
+    <extensionID>com.gameanalytics.sdk</extensionID>
+  </extensions>
+</application>

@@ -1,0 +1,265 @@
+<?xml version="1.0" encoding="utf-8" standalone="no" ?>
+<!-- 
+	Usage:
+
+	To localize the description, use the following format for the description element.
+	<description>
+	<text xml:lang="en">English App description goes here</text>
+	<text xml:lang="fr">French App description goes here</text>
+	<text xml:lang="ja">Japanese App description goes here</text>
+	</description>
+
+	To localize the name, use the following format for the name element.
+	<name>
+	<text xml:lang="en">English App name goes here</text>
+	<text xml:lang="fr">French App name goes here</text>
+	<text xml:lang="ja">Japanese App name goes here</text>
+	</name>
+-->
+<application xmlns="http://ns.adobe.com/air/application/32.0" xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools">
+	<id>ru.polimerstudios.substance</id>
+	<versionNumber>1.2.3</versionNumber>
+	<versionLabel>1.2.3</versionLabel>
+	<filename>Substance</filename>
+	<description/>
+	<name>Substance</name>
+	<copyright/>
+	<initialWindow>
+		  <content>liz.swf</content>
+		  <systemChrome>standard</systemChrome>
+		  <transparent>false</transparent>
+		  <visible>true</visible>
+		  <fullScreen>true</fullScreen>
+		  <aspectRatio>portrait</aspectRatio>
+		  <renderMode>gpu</renderMode>
+		  <autoOrients>false</autoOrients></initialWindow>
+		<icon>
+			<image36x36>ico/ico_36.png</image36x36>
+			<image48x48>ico/ico_48.png</image48x48>
+			<image72x72>ico/ico_72.png</image72x72>
+			<image96x96>ico/ico_96.png</image96x96>
+			<image144x144>ico/ico_144.png</image144x144>
+			<image192x192>ico/ico_192.png</image192x192>
+		</icon>
+		<customUpdateUI>false</customUpdateUI>
+		<allowBrowserInvocation>false</allowBrowserInvocation>
+  <supportedLanguages>en ru</supportedLanguages>
+
+  <android>
+    <manifestAdditions><![CDATA[<manifest android:installLocation="auto">
+
+   <uses-sdk android:minSdkVersion="21" android:targetSdkVersion="28" />
+
+	<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+	<uses-permission android:name="android.permission.INTERNET" />
+	<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+	<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+	<uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/> 
+	<uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+	<uses-permission android:name="android.permission.GET_ACCOUNTS" />
+	<uses-permission android:name="com.android.vending.BILLING" />
+	
+	<uses-feature android:required="true" android:name="android.hardware.touchscreen.multitouch" />
+ 
+	<application android:allowBackup="true"> 
+
+		<activity>
+			<intent-filter>
+				<action android:name="android.intent.action.MAIN" />
+				<category android:name="android.intent.category.LAUNCHER" />
+			</intent-filter>
+			<intent-filter>
+				<action android:name="android.intent.action.VIEW" />
+				<category android:name="android.intent.category.BROWSABLE" />
+				<category android:name="android.intent.category.DEFAULT" />
+			</intent-filter>
+		</activity>
+
+		<meta-data android:name="android.max_aspect" android:value="2.1" />
+
+		<meta-data android:name="com.google.android.gms.games.APP_ID" android:value="\ 609578352907" />
+
+		<activity 
+			android:name="com.distriqt.extension.inappbilling.activities.ProductViewActivity" 
+			android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+
+
+		<activity
+			android:name="com.android.billingclient.api.ProxyBillingActivity"
+			android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
+			android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+
+        <!-- Yandex-metrica -->
+        <service
+            android:name="com.yandex.metrica.MetricaService" android:enabled="true"
+            android:exported="true" android:process=":Metrica" >
+            <intent-filter>
+                <category android:name="android.intent.category.DEFAULT" />
+                <action android:name="com.yandex.metrica.IMetricaService" />
+                <data android:scheme="metrica" />
+            </intent-filter>
+            <meta-data
+                android:name="metrica:api:level"
+                android:value="70" />
+        </service>
+        <service
+            android:name="com.yandex.metrica.ConfigurationService" android:enabled="true"
+            android:exported="true" android:process=":Metrica" >
+            <meta-data
+                android:name="metrica:configuration:api:level" android:value="2" />
+            <intent-filter>
+                <action android:name="com.yandex.metrica.configuration.ACTION_START" />
+            </intent-filter>
+        </service>
+        <service
+            android:name="com.yandex.metrica.ConfigurationJobService" android:enabled="true"
+            android:exported="false"
+            android:permission="android.permission.BIND_JOB_SERVICE"
+            android:process=":Metrica" >
+        </service>
+        <receiver
+            android:name="com.yandex.metrica.MetricaEventHandler" android:enabled="true"
+            android:exported="true" >
+            <intent-filter>
+                <action android:name="com.android.vending.INSTALL_REFERRER" />
+            </intent-filter>
+        </receiver>
+        <!-- End Yandex-metrica -->
+
+        <activity
+                        android:name="com.ironsource.sdk.controller.ControllerActivity"
+                        android:configChanges="orientation|screenSize"
+                        android:hardwareAccelerated="true" />
+                    <activity
+                        android:name="com.ironsource.sdk.controller.InterstitialActivity"
+                        android:configChanges="orientation|screenSize"
+                        android:hardwareAccelerated="true"
+                        android:theme="@android:style/Theme.Translucent" />
+                    <activity
+                        android:name="com.ironsource.sdk.controller.OpenUrlActivity"
+                        android:configChanges="orientation|screenSize"
+                        android:hardwareAccelerated="true"
+                        android:theme="@android:style/Theme.Translucent" />
+
+                    <!-- AdColony -->
+                    <activity
+                        android:name="com.adcolony.sdk.AdColonyInterstitialActivity"
+                        android:configChanges="keyboardHidden|orientation|screenSize"
+                        android:hardwareAccelerated="true" />
+                    <activity
+                        android:name="com.adcolony.sdk.AdColonyAdViewActivity"
+                        android:configChanges="keyboardHidden|orientation|screenSize"
+                        android:hardwareAccelerated="true" />
+
+                    <!-- AdMob -->
+                    <meta-data
+                        android:name="com.google.android.gms.version"
+                        android:value="12451000" />
+
+                    <activity
+                        android:name="com.google.android.gms.ads.AdActivity"
+                        android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize"
+                        android:theme="@android:style/Theme.Translucent" />
+
+                    <!-- AppLovin -->
+                    <activity android:name="com.applovin.adview.AppLovinInterstitialActivity" android:configChanges="orientation|screenSize"/>
+                    <activity android:name="com.applovin.adview.AppLovinConfirmationActivity" android:configChanges="orientation|screenSize"/>
+
+                    <meta-data
+                        android:name="applovin.sdk.verbose_logging"
+                        android:value="true" />
+
+                    <!-- Chartboost -->
+                    <activity
+                        android:name="com.chartboost.sdk.CBImpressionActivity"
+                        android:configChanges="keyboardHidden|orientation|screenSize"
+                        android:excludeFromRecents="true"
+                        android:hardwareAccelerated="true"
+                        android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen" />
+
+                    <!-- Tapjoy -->
+                    <activity
+                        android:name="com.tapjoy.TJAdUnitActivity"
+                        android:configChanges="orientation|keyboardHidden|screenSize"
+                        android:hardwareAccelerated="true"
+                        android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen" />
+                    <activity
+                        android:name="com.tapjoy.mraid.view.ActionHandler"
+                        android:configChanges="orientation|keyboardHidden|screenSize" />
+                    <activity
+                        android:name="com.tapjoy.mraid.view.Browser"
+                        android:configChanges="orientation|keyboardHidden|screenSize" />
+                    <activity
+                        android:name="com.tapjoy.TJContentActivity"
+                        android:configChanges="orientation|keyboardHidden|screenSize"
+                        android:hardwareAccelerated="true"
+                        android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+                    <activity android:name=".activities.SegmentActivity" />
+
+                    <!-- UnityAds -->
+                    <activity
+                        android:name="com.unity3d.services.ads.adunit.AdUnitActivity"
+                        android:configChanges="fontScale|keyboard|keyboardHidden|locale|mnc|mcc|navigation|orientation|screenLayout|screenSize|smallestScreenSize|uiMode|touchscreen"
+                        android:hardwareAccelerated="true"
+                        android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
+                    <activity
+                        android:name="com.unity3d.services.ads.adunit.AdUnitTransparentActivity"
+                        android:configChanges="fontScale|keyboard|keyboardHidden|locale|mnc|mcc|navigation|orientation|screenLayout|screenSize|smallestScreenSize|uiMode|touchscreen"
+                        android:hardwareAccelerated="true"
+                        android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen" />
+                    <activity
+                        android:name="com.unity3d.services.ads.adunit.AdUnitTransparentSoftwareActivity"
+                        android:configChanges="fontScale|keyboard|keyboardHidden|locale|mnc|mcc|navigation|orientation|screenLayout|screenSize|smallestScreenSize|uiMode|touchscreen"
+                        android:hardwareAccelerated="false"
+                        android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen" />
+                    <activity
+                        android:name="com.unity3d.services.ads.adunit.AdUnitSoftwareActivity"
+                        android:configChanges="fontScale|keyboard|keyboardHidden|locale|mnc|mcc|navigation|orientation|screenLayout|screenSize|smallestScreenSize|uiMode|touchscreen"
+                        android:hardwareAccelerated="false"
+                        android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
+
+                    <!-- Vungle -->
+                    <activity
+                        android:name="com.vungle.publisher.VideoFullScreenAdActivity"
+                        android:configChanges="keyboardHidden|orientation|screenSize|screenLayout|smallestScreenSize"
+                        android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
+                    <activity
+                        android:name="com.vungle.publisher.MraidFullScreenAdActivity"
+                        android:configChanges="keyboardHidden|orientation|screenSize|screenLayout|smallestScreenSize"
+                        android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen" />
+                    <activity
+                        android:name="com.vungle.publisher.FlexViewAdActivity"
+                        android:configChanges="keyboardHidden|orientation|screenSize|screenLayout|smallestScreenSize"
+                        android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen" />
+
+	</application>
+</manifest>]]></manifestAdditions>
+  </android>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <extensions>
+    <extensionID>com.ironsource.adobeair.google</extensionID>
+    <extensionID>com.ironsource.adobeair.support</extensionID>
+    <extensionID>com.ironsource.adobeair</extensionID>
+    <extensionID>com.distriqt.Core</extensionID>
+    <extensionID>com.distriqt.InAppBilling</extensionID>
+  </extensions>
+</application>
